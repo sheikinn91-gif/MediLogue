@@ -1,0 +1,15 @@
+# ====== BACKEND CORE ======
+fastapi>=0.110.0
+uvicorn>=0.28.0
+pydantic>=2.6.0
+
+# ====== DATABASE MANAGEMENT ======
+pymongo>=4.6.0
+python-dotenv>=1.0.1
+
+# ====== AI ENGINE CLIENT ======
+openai>=1.14.0
+
+# ====== FRONTEND INTERFACE ======
+streamlit>=1.32.0
+requests>=2.31.0

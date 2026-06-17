@@ -1,0 +1,33 @@
+# Python environment
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables & secrets (PENTING!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Streamlit/System files
+.streamlit/
+.DS_Store
+.venv/
+env/
+venv/
+venv.bak/
+venv/
+
+# Database connection files (jika anda simpan secara hardcoded)
+*.json
+*.pem
+*.key
+
+# Logs
+*.log
+
+# Node modules (Jika ada komponen React/Frontend)
+node_modules/
+dist/
+.cache/
