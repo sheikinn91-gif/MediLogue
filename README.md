@@ -13,7 +13,7 @@ Global Healthcare Inclusivity: Removes language barriers for marginalized commun
 Lightweight & Scalable: Optimized for low-resource hardware, making it suitable for deployment in remote clinics worldwide.
 
 🛠️ Architecture
-![Gambar Arkitektur Sistem](image/Medilogue.jpg)
+![Gambar Arkitektur Sistem](Image/Medilogue.jpg)
 
 The system architecture connects the frontend (Streamlit) to the backend, which processes input through the Alibaba Cloud Qwen API. The backend cross-references local dialect datasets before generating a standardized clinical analysis.
 
