@@ -11,7 +11,7 @@ load_dotenv()
 # Initialize the OpenAI-compatible client tailored for Alibaba Cloud Qwen (Singapore region)
 client = OpenAI(
     api_key=os.getenv("QWEN_API_KEY"),
-    base_url=os.getenv("QWEN_BASE_URL")
+    base_url=os.getenv("https://ws-jpe3qd2fcs667bc9.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1")
 )
 
 def generate_clinical_summary(
