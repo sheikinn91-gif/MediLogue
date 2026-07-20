@@ -14,7 +14,7 @@ MediLogue is an AI-driven triage assistant designed to bridge the communication 
 
 *(Sila letakkan gambar arkitektur anda di sini menggunakan format: ![Arkitektur](Image/Medilogue.jpg))*
 
-The system architecture connects the frontend (Streamlit) to the backend, which processes input through the Alibaba Cloud Qwen API. The backend cross-references local dialect datasets before generating a standardized clinical analysis.
+The system architecture features a React-based frontend that provides a seamless user interface, connected to a robust backend which processes clinical input through the Alibaba Cloud Qwen API.
 
 ## ☁️ Alibaba Cloud Deployment
 
