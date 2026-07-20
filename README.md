@@ -1,17 +1,26 @@
-🌍 Global Scalability: Beyond Local Boundaries
-While MediLogue is currently piloted using Sabah dialects (such as those from Penampang and Lahad Datu), the architecture is designed for global deployment.
+MediLogue: AI-Powered Dialect & Triage Engine
+MediLogue is an AI-driven triage assistant designed to bridge the communication gap between patients speaking local dialects and healthcare providers. By utilizing Alibaba Cloud Qwen LLM, the system translates diverse local expressions into standardized clinical terminology, ensuring accurate medical intake in underserved regions.
 
-1. Multilingual Foundation by Gemma 4
-   Universal Understanding: Gemma 4 is pre-trained on a vast corpus of global languages, allowing it to recognize linguistic patterns even in rare dialects.
+🚀 Key Features
+Dialect-to-Clinical Translation: Translates regional linguistic patterns (e.g., Sabahan Malay dialects) into professional English medical terminology.
 
-Contextual Translation: Whether it is a tribal dialect in the Amazon rainforest or a rural village in Sabah, the AI focuses on identifying "Medical Intent" rather than just literal word-for-word translation.
+Powered by Qwen LLM: Leverages the advanced natural language understanding of Alibaba Cloud's Qwen model to interpret nuanced medical intent.
 
-2. The "Plug-and-Play" Dialect System
-   Adaptive Learning: By simply updating the reference dataset (like the data_dialek.txt used in this project), the application can be recalibrated for any region in the world without changing the core code.
+"Plug-and-Play" Architecture: Easily adaptable to new regions or languages by simply updating the reference dataset (data_dialek.txt) without requiring code changes.
 
-Medical Standardization: The AI acts as a bridge, converting diverse local expressions of pain into standardized English medical terminology used by doctors globally.
+Global Healthcare Inclusivity: Removes language barriers for marginalized communities, ensuring patients in rural or remote areas receive accurate diagnoses.
 
-3. Impact on Global Healthcare
-   Inclusivity: Ensures that language barriers do not prevent marginalized communities from receiving accurate medical diagnoses.
+Lightweight & Scalable: Optimized for low-resource hardware, making it suitable for deployment in remote clinics worldwide.
 
-Scalable Deployment: The lightweight nature of Streamlit and the efficiency of Gemma models allow this tool to be deployed on low-resource hardware in remote clinics worldwide.
+🛠️ Architecture
+![Gambar Arkitektur Sistem](images/Medilogue.png)
+
+The system architecture connects the frontend (Streamlit) to the backend, which processes input through the Alibaba Cloud Qwen API. The backend cross-references local dialect datasets before generating a standardized clinical analysis.
+
+☁️ Alibaba Cloud Deployment
+This project is powered by Alibaba Cloud. The backend integration uses the Qwen API to perform high-fidelity medical language processing.
+
+Deployment Proof: [Link to your code file in the repo showing API usage]
+
+📝 License
+This project is licensed under the [Insert License Name, e.g., MIT License] - see the LICENSE file for details.
