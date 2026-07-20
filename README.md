@@ -20,7 +20,7 @@ The system architecture connects the frontend (Streamlit) to the backend, which 
 
 This project is powered by Alibaba Cloud. The backend integration uses the Qwen API to perform high-fidelity medical language processing.
 
-* **Deployment Proof**: [Link to your code file in the repo showing API usage]
+* **Deployment Proof**: [View Backend Integration Code](https://github.com/sheikinn91-gif/MediLogue/blob/main/qwen_client.py)
 
 ## 📝 License
 
