@@ -167,7 +167,7 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;
@@ -181,4 +181,53 @@
     right: 0;
     border-right-color: var(--border);
   }
+}
+/* GAYA UNTUK JADUAL MARKDOWN AI */
+.markdown-output table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.markdown-output th {
+  background-color: #f1f5f9; /* Warna kelabu lembut untuk tajuk (Header) */
+  color: #334155;
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 15px;
+  border: 1px solid #cbd5e1;
+  font-size: 13px;
+}
+
+.markdown-output td {
+  padding: 12px 15px;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 13px;
+  vertical-align: top;
+}
+
+/* GAYA UNTUK BULLET POINTS & TAJUK (BONUS) */
+.markdown-output h1,
+.markdown-output h2,
+.markdown-output h3 {
+  color: #0f172a;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 5px;
+}
+
+.markdown-output ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+
+.markdown-output li {
+  margin-bottom: 5px;
 }

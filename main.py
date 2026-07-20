@@ -14,7 +14,7 @@ from qwen_client import generate_clinical_summary
 app = FastAPI(
     title="MediLogue AI Backend Engine",
     description="Advanced AI-driven healthcare translation API for rural patients.",
-    version="1.0.1"
+    version="1.0.2"
 )
 
 origins = [
@@ -39,9 +39,9 @@ app.add_middleware(
 
 def call_vision_model(base64_image: str, prompt: str):
     """
-    Simulasi fungsi untuk memanggil API Visi.
-    Gantikan logik ini dengan DashScope MultiModalConversation 
-    jika sudah sedia untuk penggunaan API sebenar.
+    Simulated function to call the Vision API.
+    Replace this logic with DashScope MultiModalConversation 
+    when ready for production multi-modal deployment.
     """
     class MockResponse:
         output_text = "Patient is showing signs of severe respiratory distress (e.g., clutching chest, rapid breathing)."
@@ -49,13 +49,19 @@ def call_vision_model(base64_image: str, prompt: str):
     return MockResponse()
 
 # ==========================================
-# Pydantic Data Models
+# Pydantic Data Models (Updated with Indicators)
 # ==========================================
 
 class PatientIntakeRequest(BaseModel):
     patient_input: str = Field(..., examples=["Doktor, bapa saya mengadu ampus..."])
     vitals: Dict[str, str] = Field(default_factory=dict)
     extracted_terms: List[str] = Field(default_factory=list)
+    
+    # New indicators matched with the frontend specifications
+    age: int = Field(default=25, ge=0, le=120, description="Patient age in years")
+    gender: str = Field(default="Male", description="Biological sex/gender profile")
+    medical_history: str = Field(default="", description="Pre-existing clinical background or allergies")
+    language_mode: str = Field(default="Sabah (Sabahan Malay)", description="Active regional dialect or intake pipeline")
 
 class IntakeResponse(BaseModel):
     status: str
@@ -75,14 +81,21 @@ async def process_patient_intake(payload: PatientIntakeRequest):
     if not payload.patient_input.strip():
         raise HTTPException(status_code=400, detail="Patient complaint cannot be empty.")
 
+    # Forwarding all 4 new clinical parameters directly into the updated engine
     ai_summary = generate_clinical_summary(
         patient_complaint=payload.patient_input, 
-        extracted_terms=payload.extracted_terms
+        extracted_terms=payload.extracted_terms,
+        age=payload.age,
+        gender=payload.gender,
+        medical_history=payload.medical_history,
+        language_mode=payload.language_mode,
+        vitals=payload.vitals  # <-- Injecting the new vitals parameter here
     )
     
     if "System Error" in ai_summary:
         raise HTTPException(status_code=500, detail=ai_summary)
 
+    # Saving intake payload down to local database
     db_response_raw = save_clinical_intake(
         patient_input=payload.patient_input,
         vitals=payload.vitals,
@@ -100,13 +113,13 @@ async def process_patient_intake(payload: PatientIntakeRequest):
 @app.post("/process-sign-language")
 async def process_sign_language(file: UploadFile = File(...)):
     """
-    Menerima imej bahasa isyarat daripada kamera dan menghantar ke Model Vision.
+    Receives sign language frame image from client camera and passes it to the Vision Engine.
     """
     try:
         contents = await file.read()
         encoded_image = base64.b64encode(contents).decode("utf-8")
         
-        # Proses menggunakan Vision Engine
+        # Process using Vision Engine
         response = call_vision_model(encoded_image, prompt="Translate this sign language into clinical symptoms.")
         
         return {"translated_text": response.output_text}
