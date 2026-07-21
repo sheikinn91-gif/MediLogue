@@ -35,7 +35,7 @@ GPT-5.6 is the core "brain" of MediLogue's backend architecture. We integrated i
 
 Codex was instrumental in accelerating the backend restructuring for this hackathon. We collaborated with Codex to:
 
-- **Database Generation**: Automatically draft the PostgreSQL schema (`dummy_data.sql`) required to store patient triage logs.
+- **Database Generation**: Automatically draft the MongoDB required to store patient triage logs.
 - **API Routing**: Rapidly generate the FastAPI endpoints (`app.py`) to connect the React frontend securely with the OpenAI API.
 - **Testing Scripts**: Write Python-based unit tests to ensure the JSON outputs from GPT-5.6 were correctly parsed before hitting the database.
 
