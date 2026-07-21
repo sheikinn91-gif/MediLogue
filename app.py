@@ -141,7 +141,7 @@ with col_right:
         if not dialect_input.strip():
             st.warning("Awaiting patient phonetic or sign input stream data before running analytics.")
         else:
-            with st.spinner("Streaming data to Alibaba Qwen Engine..."):
+            with st.spinner("Streaming data to OpenAI Engine..."):
                 try:
                     backend_url = "http://127.0.0.1:8000/api/v1/intake"
                     payload = {

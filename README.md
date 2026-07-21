@@ -1,27 +1,78 @@
 # MediLogue: AI-Powered Dialect & Triage Engine
 
-MediLogue is an AI-driven triage assistant designed to bridge the communication gap between patients speaking local dialects and healthcare providers. By utilizing Alibaba Cloud Qwen LLM, the system translates diverse local expressions into standardized clinical terminology, ensuring accurate medical intake in underserved regions.
+**Submission for OpenAI Build Week (Apps for Your Life - Health Track)**
+
+## 🚨 The Problem
+
+In rural and underserved regions (such as Sabah, Malaysia), medical personnel often face critical communication barriers when triaging patients who speak deep local dialects. Misinterpreting colloquial symptom descriptions can lead to delayed treatments or fatal misdiagnoses in emergency rooms.
+
+## 💡 The Solution
+
+MediLogue is an AI-driven triage assistant that acts as a real-time clinical bridge. By leveraging the advanced reasoning capabilities of **OpenAI GPT-5.6**, the system instantly translates non-standard regional expressions into professional, structured clinical terminology, prioritizing emergency levels (e.g., Red Zone) for immediate medical intake.
 
 ## 🚀 Key Features
 
-* **Dialect-to-Clinical Translation**: Translates regional linguistic patterns (e.g., Sabahan Malay dialects) into professional English medical terminology.
-* **Powered by Qwen LLM**: Leverages the advanced natural language understanding of Alibaba Cloud's Qwen model to interpret nuanced medical intent.
-* **"Plug-and-Play" Architecture**: Easily adaptable to new regions or languages by simply updating the reference dataset (`data_dialek.txt`) without requiring code changes.
-* **Global Healthcare Inclusivity**: Removes language barriers for marginalized communities, ensuring patients in rural or remote areas receive accurate diagnoses.
-* **Lightweight & Scalable**: Optimized for low-resource hardware, making it suitable for deployment in remote clinics worldwide.
+- **Dialect-to-Clinical Translation**: Translates regional linguistic patterns directly into professional English medical terminology using GPT-5.6.
+- **Diagnostic Reasoning**: Infers medical urgency and categorizes patients based on clinical triage standards.
+- **Global Healthcare Inclusivity**: Removes language barriers for marginalized communities, ensuring patients in remote areas receive accurate preliminary diagnoses.
+- **"Plug-and-Play" Architecture**: Easily adaptable to new regions or languages by simply updating the context prompts.
+
+---
+
+## 🤖 OpenAI Build Week: Collaboration & Implementation
+
+This project existed prior to the hackathon but was **meaningfully extended** during the submission period by replacing its core diagnostic engine with GPT-5.6 and utilizing Codex for rapid database and API development.
+
+### How GPT-5.6 Contributed to the Final Result
+
+GPT-5.6 is the core "brain" of MediLogue's backend architecture. We integrated it via the FastAPI backend to replace standard keyword-matching. GPT-5.6 is specifically prompted to:
+
+1. Analyze the raw, dialect-heavy text input.
+2. Perform clinical reasoning to identify the underlying medical intent.
+3. Output a strictly formatted JSON response containing the standardized symptoms, recommended medical department, and triage urgency level to be rendered by the React frontend.
+
+### How Codex Accelerated Development
+
+Codex was instrumental in accelerating the backend restructuring for this hackathon. We collaborated with Codex to:
+
+- **Database Generation**: Automatically draft the PostgreSQL schema (`dummy_data.sql`) required to store patient triage logs.
+- **API Routing**: Rapidly generate the FastAPI endpoints (`app.py`) to connect the React frontend securely with the OpenAI API.
+- **Testing Scripts**: Write Python-based unit tests to ensure the JSON outputs from GPT-5.6 were correctly parsed before hitting the database.
+
+**Codex Session ID:** `/feedback [INSERT_YOUR_SESSION_ID_HERE_LATER]`
+
+---
 
 ## 🛠️ Architecture
 
-*(Sila letakkan gambar arkitektur anda di sini menggunakan format:![Arkitektur](Image/diagram-export-7-21-2026-3_21_54-AM.png)
+_(Sila letakkan gambar arkitektur anda di sini menggunakan format: ![Architecture](Image/diagram-export-7-21-2026-3_21_54-AM.png))_
 
-The system architecture features a React-based frontend that provides a seamless user interface, connected to a robust backend which processes clinical input through the Alibaba Cloud Qwen API.
+The system architecture features a React-based frontend that provides a seamless user interface, connected to a robust FastAPI (Python) backend which processes clinical input through the OpenAI API, with data persisted in a PostgreSQL database.
 
-## ☁️ Alibaba Cloud Deployment
+---
 
-This project is powered by Alibaba Cloud. The backend integration uses the Qwen API to perform high-fidelity medical language processing.
+## 🧪 Testing Instructions for Judges
 
-* **Deployment Proof**: [View Backend Integration Code](https://github.com/sheikinn91-gif/MediLogue/blob/main/qwen_client.py)
+We have made the repository fully testable. Please follow these steps to run the MediLogue triage system locally.
 
-## 📝 License
+### Prerequisites
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- Node.js (v16+)
+- Python (3.10+)
+- MongoDB
+
+### 1. Backend Setup (FastAPI)
+
+```bash
+# Navigate to backend directory
+cd backend
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Create a .env file and add your OpenAI API key
+echo "OPENAI_API_KEY=your_api_key_here" > .env
+
+# Run the backend server
+uvicorn app:app --reload
+```

@@ -8,7 +8,7 @@ from typing import List, Dict, Optional
 
 # Import our custom database and AI client engines
 from database import save_clinical_intake
-from qwen_client import generate_clinical_summary
+from OpenAI_client import generate_clinical_summary
 
 # Initialize FastAPI application
 app = FastAPI(

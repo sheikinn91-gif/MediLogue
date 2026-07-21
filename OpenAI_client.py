@@ -8,10 +8,10 @@ from database import get_dialect_meaning
 # Load environmental variables from .env file
 load_dotenv()
 
-# Initialize the OpenAI-compatible client tailored for Alibaba Cloud Qwen (Singapore region)
+# Initialize the OpenAI
 client = OpenAI(
-    api_key=os.getenv("QWEN_API_KEY"),
-    base_url=("https://ws-jpe3qd2fcs667bc9.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1")# Hardcode URL for submission proof
+    api_key=os.getenv("OPENAI_API_KEY"),
+   
 )
 
 def generate_clinical_summary(
@@ -51,7 +51,7 @@ def generate_clinical_summary(
     try:
         chat_client = getattr(client, "chat")
         response = getattr(chat_client, "completions").create(
-            model="qwen3.7-max",
+            model="gpt-5.6", # Model GPT-5.6 is optimized for structured clinical reasoning and triage evaluation
             messages=[
                 {
                     "role": "system", 
@@ -68,7 +68,7 @@ def generate_clinical_summary(
                         f"  * Oxygen Saturation (SpO2): {oxygen} (CRITICAL: Immediately trigger HIGH severity if SpO2 < 95% regardless of text brevity)\n"
                         f"  * Core Body Temperature: {temperature} (CRITICAL: Immediately evaluate hyperpyrexia risk if Temp >= 38.5°C)\n\n"
                         "AI Reasoning Guideline: Cross-reference the raw text complaint against the age, active biometric vitals metrics, and verified glossary. You MUST explicitly state the biometric values in the analysis report and adjust triage severity level to HIGH/EMERGENT if objective metrics show clinical distress."
-                        # Tambah ayat ini dalam System Prompt main.py anda:
+                        # Add this line in your System Prompt main.py:
                         "STRICT TRIAGE RULE: If objective biometric vitals are strictly NORMAL/STABLE (e.g., SpO2 >= 95%, Temp < 38.5°C, BP > 90/60) and the complaint is severe localized pain (like renal colic/abdominal cramp), you MUST classify the Severity Level as MEDIUM/YELLOW. Do not over-triage to HIGH unless there is active biometric failure or explicit signs of shock."
                         "You MUST format your response using rich Markdown. "
                         "Use Markdown headers (##) for main sections. "
@@ -88,7 +88,7 @@ def generate_clinical_summary(
                     )
                 }
             ],
-            temperature=0.1, # Diturunkan sedikit untuk hasil penulisan yang lebih rigid/fakta
+            temperature=0.1, # Lowered slightly for more rigid/factual writing
             max_tokens=1000
         )
         
