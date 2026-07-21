@@ -104,7 +104,7 @@ if __name__ == "__main__":
     detected_dialects = ["ampus"]
     sample_vitals = {"systolic_diastolic": "140/90", "oxygen_saturation": "91%", "temperature": "38.5°C"}
     
-    print("--- Testing Integrated MediLogue Qwen Engine with Patient Indicators & Vitals ---")
+    print("--- Testing Integrated MediLogue OpenAI Engine with Patient Indicators & Vitals ---")
     output = generate_clinical_summary(
         patient_complaint=sample_text, 
         extracted_terms=detected_dialects,
