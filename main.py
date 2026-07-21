@@ -124,4 +124,5 @@ async def process_sign_language(file: UploadFile = File(...)):
         
         return {"translated_text": response.output_text}
     except Exception as e:
+        print(f"RALAT KRITIKAL: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Vision analysis error: {str(e)}")
